@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { Artists } from "./Artists";
+import { Route, Routes } from "react-router";
+import { Albums } from "./Albums";
+import { Tracks } from "./Tracks";
+import { useSelector } from "react-redux";
 
 function App() {
+  const isWaiting = useSelector((state) => state.isWaiting);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isWaiting && <div className="spinner" />}
+      <Routes>
+        <Route path="/" element={<Artists />} />
+        <Route path="/albums/:artist" element={<Albums />} />
+        <Route path="/tracks" element={<Tracks />} />
+      </Routes>
     </div>
   );
 }
