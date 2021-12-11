@@ -13,7 +13,7 @@ export function Albums() {
   return (
     <>
       <h1>Albums for {params.artist}</h1>
-      {albums}
+      {albums.map((album) => (<li key={album}>{album}</li>))}
     </>
   );
 }
